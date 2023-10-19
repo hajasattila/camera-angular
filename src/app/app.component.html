@@ -1,33 +1,38 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <button
-          class="btn btn-primary"
-          (click)="toggleCamera()"
-          [hidden]="isCameraOn"
-        >
-          Kamera bekapcsolása
-        </button>
-        <button
-          class="btn btn-danger"
-          (click)="toggleCamera()"
-          [hidden]="!isCameraOn"
-        >
-          Kamera kikapcsolása
-        </button>
-        <webcam
-          [trigger]="triggerObservable"
-          (imageCapture)="handleImage($event)"
-          [hidden]="!isCameraOn"
-        ></webcam>
-        <br />
-        <button class="btn btn-success" (click)="triggerSnapshot()" [disabled]="!isCameraOn">
-          Képkészítés
-        </button>
-      </div>
-      <div class="col-md-6">
-        <p>Legutoljára elékészült kép: </p>
-        <img [src]="captureImage" height="300px" />
-      </div>
+  <webcam
+    [trigger]="triggerObservable"
+    (imageCapture)="handleImage($event)"
+    [hidden]="!isCameraOn"
+  ></webcam>
+  <div>
+    <div>
+      <button
+        class="btn btn-primary"
+        (click)="toggleCamera()"
+        [hidden]="isCameraOn"
+      >
+        Kamera bekapcsolása
+      </button>
+      <button
+        class="btn btn-danger"
+        (click)="toggleCamera()"
+        [hidden]="!isCameraOn"
+      >
+        Kamera kikapcsolása
+      </button>
+
+      <br />
+      <button
+        class="btn btn-success"
+        (click)="triggerSnapshot()"
+        [disabled]="!isCameraOn"
+      >
+        Képkészítés
+      </button>
+    </div>
+    <div>
+      <p>Legutoljára elékészült kép:</p>
+      <img [src]="captureImage" height="300px" />
     </div>
   </div>
+</div>

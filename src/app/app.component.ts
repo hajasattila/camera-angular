@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {}
 
+  //Képkészítés
   public triggerSnapshot(): void {
     this.trigger.next();
   }
@@ -22,8 +23,10 @@ export class AppComponent implements OnInit {
   public handleImage(webcamImage: WebcamImage): void {
     this.webcamImage = webcamImage;
     this.captureImage = webcamImage.imageAsDataUrl;
-    console.info('received webcam image');
+    console.info('Mukodik a kamerakep');
     this.downloadImage();
+
+    console.log(this.captureImage);
   }
 
   public get triggerObservable(): Observable<void> {
@@ -32,14 +35,14 @@ export class AppComponent implements OnInit {
 
   private downloadImage(): void {
     if (this.captureImage) {
-      // Hozz létre egy blob-ot a képből
+      // blob a képből
       const blob = this.dataURItoBlob(this.captureImage);
 
-      // Hozz létre egy fájlnevet a mai dátummal
+      // File név a dátum legyen
       const today = new Date();
       const fileName = `Fenykep_${today.toISOString()}.png`;
 
-      // Állítsd be a link attribútumait és a letölthető fájlt
+      //Link attribútumai és a letölhető file
       const a = document.createElement('a');
       a.href = window.URL.createObjectURL(blob);
       a.download = fileName;
@@ -63,4 +66,11 @@ export class AppComponent implements OnInit {
   public toggleCamera(): void {
     this.isCameraOn = !this.isCameraOn;
   }
+
+  /*   async onFileChange(event:any){
+    const file = event.target.files[0]
+    if(file){
+      console.log(file)
+    }
+  } */
 }

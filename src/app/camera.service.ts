@@ -7,8 +7,8 @@ export class CameraService {
   async getPhoto(): Promise<Blob> {
     const constraints = {
       video: {
-        width: { ideal: 1280 }, // Állítsd be a kívánt szélességet
-        height: { ideal: 720 }   // Állítsd be a kívánt magasságot
+        width: { ideal: 1920 },
+        height: { ideal: 1080 }
       }
     };
 
